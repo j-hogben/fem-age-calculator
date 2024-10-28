@@ -1,0 +1,268 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins-ExtraBoldItalic.ttf);
+  font-style: 'italic';
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins-Bold.ttf);
+  font-style: 'normal';
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins-Italic.ttf);
+  font-style: 'italic';
+  font-weight: 400;
+}
+
+:root {
+  /* COLOURS */
+  --clr-black: #151515;
+  --clr-purple: #854dff;
+  --clr-white: #ffffff;
+  --clr-light-grey: #f0f0f0;
+  --clr-grey: #716f6f;
+  --clr-line: #dcdcdc;
+  --clr-error: #ff5959;
+
+  /* TYPOGRAPHY */
+  --fs-label: 0.75rem; /* 12px */
+  --fs-input: 1.25rem; /* 20px */
+  --fs-error: 0.75rem; /* 12px */
+  --fs-results: 3.5rem; /* 56px */
+
+  --lh-results: 110%;
+
+  --ls-label: 4px;
+  --ls-input: 0.25px;
+  --ls-results: -2px;
+
+  /* BORDER RADIUS */
+  --br-card: 1.5rem 1.5rem 6.25rem 1.5rem;
+  --br-input: 0.5rem;
+
+  /* TRANSITION */
+  --trans-120-all: all 120ms ease-in-out;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --fs-label: 0.875rem; /* 14px */
+    --fs-input: 2rem; /* 32px */
+    --fs-error: 0.875rem; /* 14px */
+    --fs-results: 6.5rem; /* 104px */
+
+    --ls-label: 4px;
+    --ls-input: 0.25px;
+    --ls-results: -2px;
+  }
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ BASIC RESET ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+input {
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ UTILITY CLASSES ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ TYPOGRAPHY ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+label {
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--clr-grey);
+}
+
+input[type='number'] {
+  font-size: var(--fs-input);
+  font-weight: 700;
+  color: var(--clr-black);
+}
+
+input::placeholder {
+  color: var(--clr-black);
+  opacity: 50%;
+}
+
+.results {
+  font-size: var(--fs-results);
+  font-weight: 800;
+  line-height: var(--lh-results);
+  letter-spacing: var(--ls-results);
+  color: var(--clr-black);
+}
+
+.error {
+  font-size: var(--fs-error);
+  font-weight: 400;
+  color: var(--clr-error);
+}
+
+.error-active {
+  color: var(--clr-error);
+  border-color: var(--clr-error);
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ PAGE ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+body {
+  display: flex;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 1rem;
+  background-color: var(--clr-light-grey);
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ FORM ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+main {
+  --mobile-btn-spacing: 4rem;
+  width: 100%;
+  max-width: 34.375rem;
+  margin-inline: auto;
+  padding: 3rem 1.5rem;
+  background-color: var(--clr-white);
+  border-radius: var(--br-card);
+}
+
+#ageCalculator {
+  padding-bottom: var(--mobile-btn-spacing);
+  border-bottom: 1px solid var(--clr-line);
+
+  position: relative;
+}
+
+.input-fields {
+  max-width: 34rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+input[type='number'] {
+  --active-clr: var(--clr-purple);
+  margin: 0.25rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--clr-line);
+  border-radius: var(--br-input);
+  caret-color: var(--active-clr);
+  outline: none;
+  cursor: pointer;
+  transition: var(--trans-120-all);
+}
+
+input[type='number']:focus-visible {
+  border-color: var(--active-clr);
+}
+
+.submit-btn {
+  padding: 1.25rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: var(--clr-purple);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--trans-120-all);
+
+  img {
+    width: 1.5rem;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  input[type='number']:hover {
+    border-color: var(--active-clr);
+  }
+
+  .submit-btn:hover {
+    background-color: var(--clr-black);
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    --mobile-btn-spacing: 2.9688rem;
+    max-width: 52.5rem;
+    padding: 3.5rem;
+  }
+
+  #ageCalculator input {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .submit-btn {
+    padding: 1.625rem;
+    left: auto;
+    right: 0;
+    transform: translate(0, 50%);
+
+    img {
+      width: 2.75rem;
+    }
+  }
+}
+
+/* ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ RESULTS ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ */
+
+.results {
+  padding-top: var(--mobile-btn-spacing);
+}
+
+.purple {
+  color: var(--clr-purple);
+}
